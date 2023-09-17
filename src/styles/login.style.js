@@ -1,0 +1,85 @@
+import { StyleSheet } from "react-native";
+import { colors } from "./global.style";
+
+export const styles = StyleSheet.create({
+    container:{
+        flex:1,
+        paddingTop:40,
+        backgroundColor:colors.background,
+    },
+    scrollContainer:{
+        justifyContent:'center',
+        flex:1,
+    },
+    text_greeting:{
+        fontFamily:'Poppins-SemiBold',
+        fontSize:22,
+        marginBottom:8
+    },
+    content_intro:{
+        alignSelf:'center',
+        alignItems:'center'
+    },
+    text_welcome:{
+        fontFamily:'Poppins-Regular',
+        fontSize:12,
+        textAlign:'center',
+        lineHeight:22
+    },
+    content_inputs:{
+        marginTop:32,
+        paddingHorizontal:32,
+        gap:16
+    },
+    button_recover:{
+        alignSelf:'flex-end'
+    },
+    text_recover:{
+        fontFamily:'Poppins-Regular',
+        color:"#616161",
+        fontSize:12
+
+    },
+    button_sign_in:{
+        height:55,
+        backgroundColor:colors.primary,
+        borderRadius:8,
+        alignItems:'center',
+        justifyContent:'center',
+        marginTop:32,
+        marginBottom:12
+    },
+    text_sign_in:{
+        fontFamily:'Poppins-SemiBold',
+        color:"#fff",
+        fontSize:18
+    },
+    text_or:{
+        alignSelf:'center',
+        fontFamily:'Poppins-Regular',
+        fontSize:16,
+        color:'grey'
+    },
+    contentSocial:{
+        flexDirection:'row',
+        gap:24,
+        alignSelf:'center',
+        marginTop:32
+    },
+    contentInfo:{
+        alignSelf:'center',
+        marginTop:48,
+        flexDirection:'row',
+        gap:8
+    },
+    text_info_1:{
+        fontFamily:'Poppins-Regular',
+        fontSize:13
+    },
+    text_info_2:{
+        fontFamily:'Poppins-SemiBold',
+        fontSize:13,
+        color:colors.primary
+    }
+
+})
