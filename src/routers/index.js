@@ -2,7 +2,7 @@
 import { useState, useContext } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { AntDesign, MaterialCommunityIcons, Ionicons, FontAwesome } from '@expo/vector-icons';
+import { AntDesign, MaterialCommunityIcons, Ionicons, FontAwesome} from '@expo/vector-icons';
 import AuthStack from './auth.router';
 import HomeStack from './home.router';
 
@@ -14,7 +14,7 @@ const Tab = createBottomTabNavigator();
 
 const Route = () =>{
 
-  const[isAuthenticated, setIsAuthenticated] = useState(false)
+  const[isAuthenticated, setIsAuthenticated] = useState(true)
   
   return (
     <>
@@ -24,8 +24,8 @@ const Route = () =>{
               initialRouteName='Principal'
               screenOptions={{
                 headerShown:false,
-                tabBarActiveTintColor:'#3580FF',
-                tabBarInactiveTintColor:'#4D4D4E',
+                tabBarActiveTintColor:'#000',
+                tabBarInactiveTintColor:'#777373',
                 tabBarStyle: { 
                   backgroundColor: '#fff',
                   borderTopColor:'transparent',
@@ -39,7 +39,7 @@ const Route = () =>{
                       component={HomeStack}
                       options={({route})=>({
                         tabBarIcon: ({size, color})=> <FontAwesome name="dashcube" size={size} color={color} />,
-                        tabBarLabel:'Home',
+                        tabBarLabel:'Inicio',
                         tabBarLabelStyle:{
                           fontFamily:"Mukta-SemiBold",
                           fontSize:12
@@ -51,8 +51,8 @@ const Route = () =>{
                       name="Alarm" 
                       component={HomeStack}
                       options={({route})=>({
-                        tabBarIcon: ({size, color})=> <AntDesign name="clockcircle" size={24} color={color} />,
-                        tabBarLabel:'Lembrete',
+                        tabBarIcon: ({size, color})=> <Ionicons name="grid" size={24} color={color} />,
+                        tabBarLabel:'Produtos',
                         tabBarLabelStyle:{
                           fontFamily:"Mukta-SemiBold",
                           fontSize:12
@@ -64,8 +64,8 @@ const Route = () =>{
                       name="Export" 
                       component={HomeStack}
                       options={({route})=>({
-                        tabBarIcon: ({size, color})=> <MaterialCommunityIcons name="file-export" size={size} color={color} />,
-                        tabBarLabel:'Exportar',
+                        tabBarIcon: ({size, color})=> <AntDesign name="heart" size={size} color={color} />,
+                        tabBarLabel:'Favoritos',
                         tabBarLabelStyle:{
                           fontFamily:"Mukta-SemiBold",
                           fontSize:12

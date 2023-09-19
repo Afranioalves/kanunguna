@@ -1,0 +1,51 @@
+import { StyleSheet } from "react-native";
+import { colors } from "./global.style";
+
+export const styles = StyleSheet.create({
+    container:{
+        flex:1,
+        backgroundColor:colors.background
+    },
+    scrollContainer:{
+      paddingVertical:24
+    },
+    contentSlider:{
+        backgroundColor:'red',
+        height:120,
+        marginTop:8,
+        marginHorizontal:16,
+        borderRadius:18
+    },
+    box_info:{
+        flexDirection:'row',
+        justifyContent:'space-between',
+        alignItems:'center',
+        paddingHorizontal:16,
+        marginTop:24,
+        marginBottom:12
+    },
+    button_view_all:{
+        flexDirection:'row',
+        gap:12,
+        alignItems:'center'
+    },
+    title_section:{
+        fontFamily:'Mukta-SemiBold',
+        fontSize:16
+    },
+    text_view:{
+        fontFamily:'Poppins-Medium',
+        color:"grey"
+    },
+    scrollCategory:{
+        paddingHorizontal:16,
+        flexDirection:'row',
+        gap:12
+    },
+    contentProduct:{
+        paddingHorizontal:16,
+        flexDirection:'row',
+        flexWrap:'wrap',
+        justifyContent:'space-between',
+    }
+})
