@@ -5,7 +5,9 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { AntDesign, MaterialCommunityIcons, Ionicons, FontAwesome} from '@expo/vector-icons';
 import AuthStack from './auth.router';
 import HomeStack from './home.router';
-
+import Favorite from '../screens/favorite.screen';
+import ProductStack from './product.router';
+import { AuthContext } from '../context/auth.context';
 
 
 const Tab = createBottomTabNavigator();
@@ -14,7 +16,7 @@ const Tab = createBottomTabNavigator();
 
 const Route = () =>{
 
-  const[isAuthenticated, setIsAuthenticated] = useState(true)
+  const {isAuthenticated} = useContext(AuthContext)
   
   return (
     <>
@@ -48,8 +50,8 @@ const Route = () =>{
                   />
 
                   <Tab.Screen 
-                      name="Alarm" 
-                      component={HomeStack}
+                      name="Products" 
+                      component={ProductStack}
                       options={({route})=>({
                         tabBarIcon: ({size, color})=> <Ionicons name="grid" size={24} color={color} />,
                         tabBarLabel:'Produtos',
@@ -61,8 +63,8 @@ const Route = () =>{
                   />
 
                 <Tab.Screen 
-                      name="Export" 
-                      component={HomeStack}
+                      name="Favorite" 
+                      component={Favorite}
                       options={({route})=>({
                         tabBarIcon: ({size, color})=> <AntDesign name="heart" size={size} color={color} />,
                         tabBarLabel:'Favoritos',
