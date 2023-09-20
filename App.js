@@ -1,8 +1,9 @@
-import {useCallback} from 'react';
+import {useCallback, useContext} from 'react';
 import { View } from "react-native";
 import Route from "./src/routers";
 import { useFonts } from "expo-font";
 import * as SplashScreen from 'expo-splash-screen';
+import { AuthProvider } from './src/context/auth.context';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -31,6 +32,6 @@ const App = () =>{
   return <View onLayout={onLayoutRootView} style={{flex:1}}><Route /></View>
 }
 
-export default App
+export default ()=> <AuthProvider><App /></AuthProvider>
 
 

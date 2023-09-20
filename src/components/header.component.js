@@ -1,72 +1,105 @@
-import {Text, View, TextInput, StyleSheet, Pressable, Animated} from 'react-native'
+import {Text, View, TextInput, StyleSheet, Pressable} from 'react-native'
 import { colors } from '../styles/global.style'
-import { Feather, Octicons } from '@expo/vector-icons';
+import { Feather, Octicons, AntDesign } from '@expo/vector-icons';
 
-const Header = ({scrollY}) =>{
-
-    const diffClamp = Animated.diffClamp(scrollY,0,50)
-
-    const translateY = diffClamp.interpolate({
-        inputRange:[0, 50],
-        outputRange:[0, -50],
-        //extrapolate:'clamp'
-    })
-    const height = diffClamp.interpolate({
-        inputRange:[0, 150],
-        outputRange:[150, 50],
-        //extrapolate:'clamp'
-    })
-    const opacity = diffClamp.interpolate({
-        inputRange:[0, 50],
-        outputRange:[1, 0],
-        
-    })
-    const marginBottom = diffClamp.interpolate({
-        inputRange:[0, 1],
-        outputRange:[4, 0],
-    })
-  
+const Header = ({navigation=undefined, title='Kanunguna', navigate}) =>{
 
     return(
-        <Animated.View 
-            style={[styles.container,
-            {
-              
-                height,
-              
-               
-            }
-            ]}
-        >
+        <View style={styles.container}>
 
-            <Animated.View style={[styles.header]}>
-                <Pressable style={styles.buttonIcon}>
-                    <Feather name="menu" size={26} color="#fff" />
-                </Pressable>
-                <Text style={styles.app_name}>Kanunguna</Text>
+            <View style={[styles.header]}>
+                {
+                    navigation != undefined ? 
+                    <Pressable style={styles.buttonIcon} onPress={()=>navigation()}>
+                        <AntDesign name="arrowleft" size={26} color="#fff" />
+                    </Pressable> :
+                    <Pressable style={styles.buttonIcon}>
+                        <Feather name="menu" size={26} color="#fff" />
+                    </Pressable>
+                }
+                
+                <Text style={styles.app_name}>{title}</Text>
                 <Pressable style={styles.buttonIcon}>
                     <Octicons name="bell-fill" size={21} color="#fff" />
                 </Pressable>
                 
-            </Animated.View>
-            <Animated.View style={[styles.button_search,{opacity,transform:[{ translateY }]}]}>
+            </View>
+            <Pressable style={styles.button_search} onPress={()=>navigate('Search')}>
                 <Feather name="search" size={22} color="#939393" style={styles.icon_search}/>
                 <Text style={styles.text}>O que você precisa ?</Text>
-            </Animated.View>
+            </Pressable>
             
-        </Animated.View>
+        </View>
     )
 }
+
+
+export const HeaderSearch = ({navigation=undefined, title='Kanunguna', value, setValue}) =>{
+
+    const tab = navigation.getParent()
+
+    const handleGoBack = () =>{
+        tab.setOptions({tabBarStyle:{
+            display: 'flex',
+            backgroundColor: '#fff',
+            borderTopColor:'transparent',
+            paddingVertical:12,
+            height:60,
+        }})
+        navigation.goBack()
+    }
+
+    return(
+        <View style={styles.container}>
+
+            <View style={[styles.header]}>
+                {
+                    navigation != undefined ? 
+                    <Pressable style={styles.buttonIcon} onPress={()=>handleGoBack()}>
+                        <AntDesign name="arrowleft" size={26} color="#fff" />
+                    </Pressable> :
+                    <Pressable style={styles.buttonIcon}>
+                        <Feather name="menu" size={26} color="#fff" />
+                    </Pressable>
+                }
+                
+                <Text style={styles.app_name}>{title}</Text>
+                <Pressable style={styles.buttonIcon}>
+                    <Octicons name="bell-fill" size={21} color="#fff" />
+                </Pressable>
+                
+            </View>
+            <View style={styles.button_search}>
+                <Feather name="search" size={22} color="#939393" style={styles.icon_search}/>
+                <TextInput 
+                    style={styles.input} 
+                    placeholder='O que você precisa ?'
+                    autoFocus={true}
+                    value={value}
+                    cursorColor="#0395FF"
+                    onChangeText={setValue}
+                    returnKeyType='done'
+                />
+            </View>
+            
+        </View>
+    )
+}
+
+
+
+
+
 
 export default Header
 
 const styles = StyleSheet.create({
     container:{
         backgroundColor:colors.second,
-        //height:150,
+        height:150,
         paddingTop:48,
         paddingHorizontal:16,
-        marginBottom:24
+        marginBottom:27
        
     },
     header:{
@@ -101,7 +134,9 @@ const styles = StyleSheet.create({
         color:"#939393",
         fontFamily:'Poppins-Medium',
     },
-    icon_search:{
-    
+    input:{
+        height:55,
+        fontFamily:'Poppins-Medium',
+        width:'90%'
     }
 })

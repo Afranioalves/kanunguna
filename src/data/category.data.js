@@ -31,6 +31,22 @@ export const categories = [
             {
                 id:4,
                 name:'Tomate'
+            },
+            {
+                id:5,
+                name:'Alface'
+            },
+            {
+                id:6,
+                name:'Cove'
+            },
+            {
+                id:7,
+                name:'Maça'
+            },
+            {
+                id:8,
+                name:'Tomate'
             }
         ]
     },

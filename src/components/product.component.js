@@ -26,7 +26,7 @@ export const ProductCard = ({
                 : null
             }
 
-            <View style={{position:'relative'}}>
+            <View style={styles.contentImage}>
                 <Image source={image} style={styles.productImage}/>
                 <Pressable style={styles.button_like}>
                     <AntDesign name={liked? 'heart':"hearto"} size={22} color={liked? '#49BCF1':"black"} />
@@ -41,7 +41,7 @@ export const ProductCard = ({
             </View>
             <View style={styles.boxPrice}>
                 <Text style={styles.priceNow}>{currencyFormat(priceNow)}</Text>
-                <Text style={styles.priceOld}>{currencyFormat(priceOld)}</Text>
+                {discount !=0 ? <Text style={styles.priceOld}>{currencyFormat(priceOld)}</Text> : null}
             </View>
            
         </Pressable>
@@ -52,12 +52,13 @@ const styles = StyleSheet.create({
     container:{
         width:'48%',
         marginBottom:24,
-        position:'relative'
+        position:'relative',
+       
     },
     productImage:{
         width:'100%',
         height:134,
-        objectFit:'cover',
+        objectFit:'contain',
         borderRadius:8
     },
     boxStars:{
@@ -111,5 +112,11 @@ const styles = StyleSheet.create({
         right:12,
         elevation:6,
         shadowColor:'rgba(0,0,0,0.3)'
+    },
+    contentImage:{
+        backgroundColor:'#fff',
+        width:'100%',
+        height:134,
+        borderRadius:8
     }
 })
