@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useContext } from "react"
 import { View, Text, ScrollView, Pressable, TouchableOpacity} from "react-native"
 import * as NavigatorBar from 'expo-navigation-bar'
 import { colors } from "../styles/global.style"
@@ -8,7 +8,7 @@ import Social from "../components/social.component"
 import Facebook from '../../assets/img/icon/facebook.png'
 import Google from '../../assets/img/icon/google.png'
 import Apple from '../../assets/img/icon/apple.png'
-
+import { AuthContext } from "../context/auth.context"
 
 const SignIn = () =>{
     NavigatorBar.setBackgroundColorAsync(colors.background)
@@ -17,8 +17,11 @@ const SignIn = () =>{
     const [isShow, setIsShow] = useState(true)
     const data = {email, password}
 
+    const {setIsAuthenticated} = useContext(AuthContext)
+
     const handleSignIn = () =>{
         console.log(data)
+        setIsAuthenticated(true)
     }
     return(
         <View style={styles.container}>
