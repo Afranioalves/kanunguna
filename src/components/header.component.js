@@ -37,7 +37,6 @@ const Header = ({navigation=undefined, title='Kanunguna', navigate}) =>{
 export const HeaderSearch = ({navigation=undefined, title='Kanunguna', value, setValue}) =>{
 
     const tab = navigation.getParent()
-
     const handleGoBack = () =>{
         tab.setOptions({tabBarStyle:{
             display: 'flex',
@@ -87,16 +86,12 @@ export const HeaderSearch = ({navigation=undefined, title='Kanunguna', value, se
 }
 
 
-
-
-
-
 export default Header
 
 const styles = StyleSheet.create({
     container:{
         backgroundColor:colors.second,
-        height:150,
+        height:130,
         paddingTop:48,
         paddingHorizontal:16,
         marginBottom:27
@@ -119,7 +114,7 @@ const styles = StyleSheet.create({
         color:"#fff"
     },
     button_search:{
-        marginTop:32,
+        marginTop:16,
         height:55,
         backgroundColor:'#fff',
         borderRadius:30,

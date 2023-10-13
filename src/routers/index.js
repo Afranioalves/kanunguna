@@ -2,12 +2,14 @@
 import { useState, useContext } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { AntDesign, MaterialCommunityIcons, Ionicons, FontAwesome} from '@expo/vector-icons';
+import { AntDesign, MaterialCommunityIcons, Ionicons, FontAwesome, FontAwesome5} from '@expo/vector-icons';
 import AuthStack from './auth.router';
 import HomeStack from './home.router';
 import Favorite from '../screens/favorite.screen';
 import ProductStack from './product.router';
+import StoreStack from './store.route';
 import { AuthContext } from '../context/auth.context';
+import { CartIcon } from '../components/icon.component';
 
 
 const Tab = createBottomTabNavigator();
@@ -62,6 +64,20 @@ const Route = () =>{
                       })}  
                   />
 
+                 <Tab.Screen 
+                      name="Cart" 
+                      component={Favorite}
+                      options={({route})=>({
+                        tabBarIcon: ({size, color})=> <CartIcon />,
+                        tabBarLabel:'',
+                        tabBarLabelStyle:{
+                          fontFamily:"Mukta-SemiBold",
+                          fontSize:12,
+                          marginTop:-12
+                        }
+                      })}  
+                  />
+
                 <Tab.Screen 
                       name="Favorite" 
                       component={Favorite}
@@ -76,11 +92,11 @@ const Route = () =>{
                   />
 
               <Tab.Screen 
-                      name="Profile" 
-                      component={HomeStack}
+                      name="Stores" 
+                      component={StoreStack}
                       options={({route})=>({
-                        tabBarIcon: ({size, color})=> <FontAwesome name="user" size={size} color={color} />,
-                        tabBarLabel:'Perfil',
+                        tabBarIcon: ({size, color})=> <FontAwesome5 name="store" size={22} color={color} />,
+                        tabBarLabel:'Lojas',
                         tabBarLabelStyle:{
                           fontFamily:"Mukta-SemiBold",
                           fontSize:12

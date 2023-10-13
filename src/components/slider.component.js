@@ -10,13 +10,13 @@ export const Slider = ({image}) =>{
 
 const styles = StyleSheet.create({
     contentSlider:{
-        height:120,
+        height:130,
         marginHorizontal:16,
         borderRadius:18
     },
     image:{
         width:'100%',
-        height:120,
+        height:130,
         borderRadius:18,
         objectFit:'cover'
     }

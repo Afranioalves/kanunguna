@@ -35,6 +35,7 @@ const Home = ({navigation})=>{
                     discount={product.discount}
                     liked={product.liked}
                     image={product.image}
+                    navigate={navigate}
                 />
             )
         })
@@ -55,7 +56,7 @@ const Home = ({navigation})=>{
 
                         <View style={styles.box_info}>
                             <Text style={styles.title_section}>Categorias</Text>
-                            <Pressable style={styles.button_view_all} onPress={()=>navigate('Category')}>
+                            <Pressable style={styles.button_view_all} onPress={()=>navigate('Products',{ screen: 'Category' })}> 
                                 <Text style={styles.text_view}>Ver todas</Text>
                                 <AntDesign name="right" size={20} color="grey" />
                             </Pressable>
@@ -73,6 +74,7 @@ const Home = ({navigation})=>{
                         
                 </View>
             </ScrollView>
+            <StatusBar style="auto"/>
         </View>
     )
 }

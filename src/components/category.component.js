@@ -11,7 +11,7 @@ export const BoxProductCategory = ({image, name, navigate}) =>{
             <ImageBackground source={image} style={styles.boxContent} borderRadius={8}>
                 <LinearGradient 
                     style={styles.box}
-                    colors={['rgba(29, 124, 198, 0.9)', 'rgba(77, 190, 236, 0.8)']}
+                    colors={['rgba(29, 124, 198, 0.6)', 'rgba(29, 124, 198, 0.6)']}
                 >
 
                 <Text style={styles.categoryName}>{name}</Text>
@@ -41,7 +41,7 @@ export const SubCategory = ({name, backgroundColor, setIndex, color})=>{
 
 const styles = StyleSheet.create({
     box:{
-        height:70,
+        height:65,
         width:130,
         borderRadius:8,
         padding:12,
@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
 
     },
     boxContent:{
-        height:70,
+        height:65,
         width:130,
         
     },

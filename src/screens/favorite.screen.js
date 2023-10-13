@@ -28,6 +28,7 @@ const Favorite = ({navigation})=>{
                     discount={product.discount}
                     liked={product.liked}
                     image={product.image}
+                    navigate={navigate}
                 />
             )
         })

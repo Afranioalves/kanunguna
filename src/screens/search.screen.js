@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import { Text, View, Image, Pressable, ScrollView, Animated } from "react-native"
+import { Text, View, Image, Pressable, ScrollView, Animated, Keyboard } from "react-native"
 import {HeaderSearch} from "../components/header.component"
 import { StatusBar } from "expo-status-bar"
 import { styles } from "../styles/home.style"
@@ -15,6 +15,8 @@ const Search = ({navigation})=>{
     const {navigate} = navigation
 
     const [value, setValue] = useState('')
+    const [isKeyboardVisible, setKeyboardVisible] = useState(false);
+
 
     const searchProducts = products.filter((p)=> p.name.toString().toUpperCase().indexOf(value.toUpperCase()) > -1);
     const total = searchProducts.length
@@ -34,6 +36,7 @@ const Search = ({navigation})=>{
                     discount={product.discount}
                     liked={product.liked}
                     image={product.image}
+                    navigate={navigate}
                 />
             )
         })
@@ -41,8 +44,28 @@ const Search = ({navigation})=>{
 
     const tab = navigation.getParent()
 
-    useEffect(()=>{
+   useEffect(()=>{
+    const keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', () => {
+        setKeyboardVisible(true);
         tab.setOptions({tabBarStyle:{display: 'none'}})
+      });
+  
+      const keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', () => {
+        setKeyboardVisible(false);
+        tab.setOptions({tabBarStyle:{
+            display: 'flex',
+            backgroundColor: '#fff',
+            borderTopColor:'transparent',
+            paddingVertical:12,
+            height:60,
+        }})
+      });
+  
+      return () => {
+        keyboardDidShowListener.remove();
+        keyboardDidHideListener.remove();
+      };
+       
     },[])
     
     return(

@@ -5,44 +5,27 @@ import { currencyFormat } from "../utils/index.util";
 import { LinearGradient } from "expo-linear-gradient";
 import { AntDesign } from '@expo/vector-icons';
 
-export const ProductCard = ({
-    qtdStar, productName='', 
-    priceNow, priceOld, 
-    discount=0, liked=false,
-    image,
-    navigate
-}) =>{
+export const StoreCard = ({storeName='', image, navigate, liked, productQtd}) =>{
 
-    const renderStar = Array.from({ length: qtdStar }, (_, index) => (
-        <Entypo name="star" size={14} color={colors.primary} key={index}/>
-      ));
   
     return(
-        <Pressable style={styles.container} onPress={()=>navigate('Principal',{ screen: 'Detail' })}>
-
-            { discount != 0 ?  
-                <LinearGradient  colors={['#1068B9', '#49BCF1']} style={styles.boxDiscount}>
-                    <Text style={styles.text}>{discount}%</Text>
-                </LinearGradient>
-                : null
-            }
+        <Pressable style={styles.container} onPress={()=>navigate('Store-profile')}>
 
             <View style={styles.contentImage}>
-                <Image source={image} style={styles.productImage}/>
+                <Image source={image} style={styles.storeImage}/>
                 <Pressable style={styles.button_like}>
                     <AntDesign name={liked? 'heart':"hearto"} size={22} color={liked? '#49BCF1':"black"} />
                 </Pressable>
             </View>
             
-            <View style={styles.boxStars}>{ renderStar }</View>
             <View>
-                <Text style={styles.productName}>
-                {productName.length > 27 ? `${productName.substring(0,27)}...`:productName}
+                <Text style={styles.storeName}>
+                    {storeName.length > 27 ? `${storeName.substring(0,27)}...`:storeName}
                 </Text>
             </View>
-            <View style={styles.boxPrice}>
-                <Text style={styles.priceNow}>{currencyFormat(priceNow)}</Text>
-                {discount !=0 ? <Text style={styles.priceOld}>{currencyFormat(priceOld)}</Text> : null}
+            <View style={styles.boxQtd}>
+                <Text style={styles.qtd}>{productQtd}</Text>
+                <Text style={styles.desc}>produtos</Text>
             </View>
            
         </Pressable>
@@ -56,7 +39,7 @@ const styles = StyleSheet.create({
         position:'relative',
        
     },
-    productImage:{
+    storeImage:{
         width:'100%',
         height:134,
         objectFit:'contain',
@@ -66,24 +49,25 @@ const styles = StyleSheet.create({
         marginVertical:8,
         flexDirection:'row'
     },
-    productName:{
-        fontFamily:'Poppins-Medium'
+    storeName:{
+        fontFamily:'Poppins-SemiBold',
+        fontSize:15,
+        marginTop:12
     },
-    boxPrice:{
+    boxQtd:{
         flexDirection:'row',
         flexWrap:'wrap',
     },
-    priceNow:{
+    qtd:{
         fontFamily:'Poppins-SemiBold',
         color:colors.primary,
         fontSize:14,
         marginRight:4
     },
-    priceOld:{
+    desc:{
         fontFamily:'Poppins-Regular',
         color:'grey',
         fontSize:14,
-        textDecorationLine:'line-through'
     },
     boxDiscount:{
         height:35,
