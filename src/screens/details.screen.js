@@ -8,6 +8,7 @@ import { currencyFormat } from '../utils/index.util'
 import Company from '../components/card-company'
 import { MaterialIcons } from '@expo/vector-icons';
 import * as NavigatorBar from 'expo-navigation-bar'
+import ModalResult from '../components/_modal_result'
 
 const Details = ({navigation}) =>{
 
@@ -17,6 +18,7 @@ const Details = ({navigation}) =>{
     const [quantity, setQuantity] = useState(1)
     const [price, setPrice] = useState(2000)
     const [index, setIndex] = useState(1)
+    const [isVisible, setIsVisible] = useState(false)
 
     const handleGoBack = () =>{
         tab.setOptions({tabBarStyle:{
@@ -110,7 +112,7 @@ const Details = ({navigation}) =>{
 
             <View style={styles.boxButtonCheckout}>
             
-                 <TouchableOpacity style={styles.buttonAdd}>
+                 <TouchableOpacity style={styles.buttonAdd} onPress={()=>setIsVisible(true)}>
                     <Text style={styles.textButtonCheckout}>Adicionar</Text>
                 </TouchableOpacity>
 
@@ -121,6 +123,7 @@ const Details = ({navigation}) =>{
             </View>
 
             <StatusBar style='light'/>
+            <ModalResult setVisible={setIsVisible} isVisible={isVisible}/>
         </View>
     )
 }

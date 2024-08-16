@@ -4,6 +4,7 @@ import Route from "./src/routers";
 import { useFonts } from "expo-font";
 import * as SplashScreen from 'expo-splash-screen';
 import { AuthProvider } from './src/context/auth.context';
+import { StatusBar } from 'expo-status-bar';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -29,7 +30,12 @@ const App = () =>{
 
   if (!fontsLoaded) return null;
 
-  return <View onLayout={onLayoutRootView} style={{flex:1}}><Route /></View>
+  return(
+    <View onLayout={onLayoutRootView} style={{flex:1}}>
+      <Route />
+      <StatusBar style='auto'/>
+    </View>
+  )
 }
 
 export default ()=> <AuthProvider><App /></AuthProvider>
